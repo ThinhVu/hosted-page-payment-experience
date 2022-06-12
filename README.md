@@ -13,7 +13,15 @@ Sharing about HPP experience of Paypal, Clover, Stripe, Square, Nuvei, Klanar,..
 ![](diagram/msg-base-broadcast-channel.png)
 
 2. Webhook base
- + In webhook base solution, customer need to host an backend app which will be listening for request send from payment provider.
+ + In webhook base solution, customer need to host a backend app which will be listening for request send from payment provider. 
+   It'll increase the complexity for development progress because the dev usually using localhost to test the app.
+   Another work-around is use reverse proxy server (Ngrok, Serveo, etc.) to public localhost website.
  + The customer need to define webhook URL so the payment provider can send the data to it. 
  
 ![](diagram/webhook-base.png)
+
+
+### ROADMAP
+- Complete webhook example.
+- Add complex use cases: Pre-auth, Sale, Capture, Void, Refund
+- ...
