@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Webhook base page of Payment Provider</title>
+</head>
+<body style="width: 100vw">
+<div style="width: 300px; margin: 0 auto; border: 1px solid #888; padding: 10px">
+  <h2>PayPall: WebHook</h2>
+  <p>Total order: $2</p>
+  <div style="display: flex; align-items: center; justify-content: center">
+    <button onclick="cancel()">Cancel</button>
+    <button onclick="pay()">Pay Now</button>
+  </div>
+</div>
+<script>
+  function getQry() {
+    if (!location.search) {
+      return {}
+    }
+    const qry = {}
+    const kvps = location.search.substr(1).split('&')
+    for (const kvp of kvps) {
+      const [k, v] = kvp.split('=')
+      qry[k] = v
+    }
+    return qry
+  }
+
+  const qry = getQry();
+  const payChannel = `payment-${qry['payment-id']}`
+
+  // With tradition webhook, the user cancel, pay request will create a request to the payment service server
+  // or directly to customer server
+  function cancel() {
+    const url = `/web-hook-response?pay-channel=${payChannel}&result=cancelled`
+    console.log('fetch', url)
+    fetch(url).then(() => window.close())
+  }
+
+  function pay() {
+    const url = '/web-hook-response?pay-channel=${payChannel}&result=purchased'
+    fetch(url).then(() => window.close())
+  }
+</script>
+</body>
+</html>

@@ -9,12 +9,13 @@ const XService = {
   },
   mount: (id) => {
     const el = document.getElementById(id);
-    const checkoutPageUrl = 'http://localhost:4000/message-base';
+    const checkoutPageUrl = 'http://localhost:4000/webhook-base.html';
     if (el.__XService) {
       return
     }
     el.__XService = true
     el.addEventListener('click', () => {
+      console.log('[webhook] trigger click')
       const paymentId = Math.floor(Math.random() * Date.now())
       const paymentUrl = `${checkoutPageUrl}?payment-id=${paymentId}`
 

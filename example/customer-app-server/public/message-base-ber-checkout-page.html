@@ -1,0 +1,39 @@
+<html>
+<head>
+  <script src="http://localhost:4000/scripts/message-base.js"></script>
+  <title>Msgbase + ber</title>
+</head>
+<body>
+<div>
+  <h2>[Customer App] MsgBase + ber</h2>
+  <div>
+    <div>
+      <h3>Customer info</h3>
+      <p>Josh</p>
+      <p>123 St., 456, Earth</p>
+    </div>
+    <div>
+      <h3>Order info</h3>
+      <div>
+        <div>
+          <div class="item">
+            <span>1x Pepsi</span>
+            <span>$20</span>
+          </div>
+          <div class="item">
+            <span>Subtotal:</span>
+            <span>$20</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button id="pay-btn-80250125">Pay now</button>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      setTimeout(() => window.XService.mount({id: 'pay-btn-80250125', useIframe: false}), 500)
+    })
+  </script>
+</div>
+</body>
+</html>

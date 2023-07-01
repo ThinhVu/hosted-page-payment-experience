@@ -20,12 +20,13 @@ const XService = {
       return
     el.__XService = true
     el.addEventListener('click', async () => {
+      console.log('[message] trigger click')
       const paymentId = createPaymentId();
       const queryStr = toQueryStr({
         ['payment-id'] : paymentId,
         action: config.action || XServiceAction.SALE
       });
-      const paymentUrl = `http://localhost:4000/message-base?${queryStr}`;
+      const paymentUrl = `http://localhost:4000/message-base.html?${queryStr}`;
       const iframe = document.createElement('iframe');
 
       if (config.useIframe) {
@@ -37,7 +38,7 @@ const XService = {
         // 1. open checkout in new tab - which establish broadcastChannel for sender
         // 2. open broadcastReceiver iframe - which establish broadcastChannel for receiver then post message to current window via iframe
         window.open(paymentUrl, '_blank');
-        iframe.src = `http://localhost:4000/message-base-broadcast-event-receiver?${queryStr}`;
+        iframe.src = `http://localhost:4000/message-base-broadcast-event-receiver.html?${queryStr}`;
         iframe.style = "width: 0; height: 0";
       }
 

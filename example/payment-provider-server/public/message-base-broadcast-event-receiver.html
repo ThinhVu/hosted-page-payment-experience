@@ -1,0 +1,26 @@
+<html>
+<script>
+  function getQry() {
+    if (!location.search) {
+      return {}
+    }
+    const qry = {}
+    const kvps = location.search.substr(1).split('&')
+    for (const kvp of kvps) {
+      const [k, v] = kvp.split('=')
+      qry[k] = v
+    }
+    return qry
+  }
+  const qry = getQry();
+  const payChannel = `payment-${qry['payment-id']}`
+  const bc = new BroadcastChannel(payChannel);
+  bc.addEventListener('message', ev => {
+    if (ev.currentTarget.name === payChannel) {
+      const response = `${payChannel}:${ev.data}`;
+      console.log('Broadcast receiver: ', response);
+      window.parent.postMessage( response, '*');
+    }
+  })
+</script>
+</html>

@@ -1,20 +1,33 @@
-<template>
-  <div>
-    <h2>Message Base Checkout Page OF PAYMENT SERVICE</h2>
-    <the-order/>
-    <div style="display: flex; align-items: center; justify-content: center">
-      <button @click="cancel">Cancel</button>
-      <button @click="pay">Pay Now</button>
-    </div>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Webhook base page of Payment Provider</title>
+</head>
+<body style="width: 100vw">
+<div style="width: 300px; margin: 0 auto; border: 1px solid #888; padding: 10px">
+  <h2>PayPall: Msg base</h2>
+  <p>Total order: $2</p>
+  <div style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+    <button onclick="cancel()">Cancel</button>
+    <button onclick="pay()">Pay Now</button>
   </div>
-</template>
-<script setup>
-import {useRouter} from 'vue-router';
-import TheOrder from '@/components/TheOrder';
+</div>
+<script>
 const showInIframe = window.parent !== window;
-const router = useRouter();
-const paymentId = router.currentRoute.value.query['payment-id'];
-const payChannel = `payment-${paymentId}`
+function getQry() {
+  if (!location.search) {
+    return {}
+  }
+  const qry = {}
+  const kvps = location.search.substr(1).split('&')
+  for (const kvp of kvps) {
+    const [k, v] = kvp.split('=')
+    qry[k] = v
+  }
+  return qry
+}
+const qry = getQry();
+const payChannel = `payment-${qry['payment-id']}`
 
 const cancel = () => {
   if (showInIframe) {
@@ -46,3 +59,5 @@ const pay = () => {
   }
 }
 </script>
+</body>
+</html>
