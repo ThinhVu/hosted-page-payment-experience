@@ -1,6 +1,5 @@
 <html>
 <head>
-  <script src="http://localhost:4000/scripts/message-base.js"></script>
   <title>Msgbase + ber</title>
 </head>
 <body>
@@ -29,6 +28,7 @@
     </div>
   </div>
   <button id="pay-btn-80250125">Pay now</button>
+  <script src="http://localhost:4000/scripts/message-base.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       setTimeout(() => window.XService.mount({id: 'pay-btn-80250125', useIframe: false}), 500)
