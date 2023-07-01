@@ -1,4 +1,7 @@
-/packages/payment-provider/server/public/css/
-/packages/payment-provider/server/public/js/
-/packages/payment-provider/server/public/favicon.ico
-/packages/payment-provider/server/public/index.html
+/example/payment-provider-server/public/css/
+/example/payment-provider-server/public/js/
+/example/payment-provider-server/public/favicon.ico
+/example/payment-provider-server/public/index.html
+/.idea/
+/example/payment-provider-server/node_modules/
+/example/customer-app-server/node_modules/
